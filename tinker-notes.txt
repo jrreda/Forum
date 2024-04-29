@@ -1,0 +1,2 @@
+> $threads = App\Models\Reply::factory(50)->create();
+> $threads->each(function ($thread) { App\Models\Reply::factory()->count(10)->create(['thread_id' => $thread->id]); });
