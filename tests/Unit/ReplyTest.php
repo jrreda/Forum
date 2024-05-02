@@ -12,6 +12,11 @@ class ReplyTest extends TestCase
 {
     use DatabaseMigrations;
 
+    /**
+     * Test to check if a post reply has an owner.
+     *
+     * @return void
+     */
     public function test_reply_has_an_owner()
     {
         // Create a user (owner)

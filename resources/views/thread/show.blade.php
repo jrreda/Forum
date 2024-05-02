@@ -17,7 +17,7 @@
             
             @foreach ($thread->replies as $reply)
                 <div class="card-header">
-                    <a href="#">{{ $reply->owner->name }}</a>
+                    <a href="#" class="text-decoration-none">{{ $reply->owner->name }}</a>
                     said that @ {{ $reply->created_at->diffForHumans() }}...</div>
                 <div class="card">
                     <div class="card-body">
