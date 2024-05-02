@@ -5,7 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ $thread->title }}</div>
+                <div class="card-header">
+                    <a href="#" class="small">{{ $thread->creator->name }}</a> posted:
+                    <br>
+                    {{ $thread->title }}
+                </div>
 
                 <div class="card-body">{{ $thread->body }}</div>
             </div>
@@ -16,14 +20,7 @@
         <div class="col-md-8">
             
             @foreach ($thread->replies as $reply)
-                <div class="card-header">
-                    <a href="#" class="text-decoration-none">{{ $reply->owner->name }}</a>
-                    said that @ {{ $reply->created_at->diffForHumans() }}...</div>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="body">{{ $reply->body }}</div>
-                    </div>
-                </div>
+                @include('thread._reply')
                 </br>
             @endforeach
         </div>
