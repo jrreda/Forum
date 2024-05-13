@@ -28,8 +28,8 @@ class ParticipateInForumTest extends TestCase
     {
         $this->be($user = User::factory()->create());
 
-        $thread = Thread::factory()->create();
-        $reply = Reply::factory()->create([
+        $thread = create(Thread::class);
+        $reply  = create(Reply::class, [
             'thread_id' => $thread->id,
             'user_id'   => $user->id,
         ]);

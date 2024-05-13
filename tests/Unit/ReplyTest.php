@@ -20,10 +20,10 @@ class ReplyTest extends TestCase
     public function test_reply_has_an_owner()
     {
         // Create a user (owner)
-        $user = User::factory()->create();
+        $user = create(User::class);
 
         // Create a post reply and associate it with the user
-        $reply = Reply::factory()->create(['user_id' => 1]);
+        $reply = create(Reply::class, ['user_id' => 1]);
 
         // Assert that the reply has an owner
         $this->assertInstanceOf(User::class, $reply->owner);
