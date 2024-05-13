@@ -16,11 +16,12 @@ class ReplyController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\Models\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Thread $thread)
     {
-        //
+        return $thread->replies();
     }
 
     /**
