@@ -17,7 +17,8 @@ class ParticipateInForumTest extends TestCase
      */
     public function test_an_unauthenticated_user_may_not_add_replies()
     {
-        $this->get('threads/1/replies')
+        $this->withExceptionHandling()
+            ->get('threads/1/replies')
             ->assertRedirect('/login');
     }
 
