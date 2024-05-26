@@ -25,6 +25,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::share('channels', Channel::all());
+        // the quiery won't be triggered until the view is loaded
+        View::composer('*', function ($view) {
+            $view->with('channels', Channel::all());
+        });
     }
 }
