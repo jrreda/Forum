@@ -39,7 +39,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
                             <ul class="dropdown-menu">
-                                @foreach (App\Models\Channel::all() as $channel)
+                                @foreach ($channels as $channel)
                                     <li>
                                         <a class="dropdown-item" href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a>
                                     </li>
