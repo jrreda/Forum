@@ -15,11 +15,12 @@ class Thread extends Model
         'title',
         'body',
         'user_id',
+        'channel_id',
     ];
 
     public function path()
     {
-        return '/threads/' . $this->id;
+        return "/threads/{$this->channel->slug}/{$this->id}";
     }
 
     public function replies()
@@ -36,4 +37,14 @@ class Thread extends Model
     {
         $this->replies()->create($reply);
     }
+
+    /**
+     * A thread is assigned a channel.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function channel()
+    {
+        return $this->belongsTo(Channel::class);
+    }   
 }
