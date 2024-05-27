@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,6 +18,20 @@ class Thread extends Model
         'user_id',
         'channel_id',
     ];
+    
+    /**
+     * boot
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('replyCount', function (Builder $builder) {
+            $builder->withCount('replies');
+        });
+    }
 
     public function path()
     {
@@ -49,13 +64,13 @@ class Thread extends Model
     }
     
     /**
-     * Scope a query to filter threads.
+     * Scope a query to filter users.
      *
-     * @param  mixed $query
-     * @param  mixed $filters
-     * @return void
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  array $filters
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeFilter($query, $filters)
+    public function scopeFilter(Builder $query, $filters)
     {
         return $filters->apply($query);
     }

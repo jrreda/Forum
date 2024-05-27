@@ -13,22 +13,18 @@
 
                 <div class="card-body">{{ $thread->body }}</div>
             </div>
-        </div>
-    </div>
-    </br>
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+
+            </br>
+            
             <h4 class="lead text-secondary">Comments: </h4>
             @foreach ($thread->replies as $reply)
                 @include('thread._reply')
                 </br>
             @endforeach
-        </div>
-    </div>
 
-    @auth    
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+            {{ $replies->links() }}
+
+            @auth
                 <form action="{{ $thread->path() }}/replies" method="post">
                     @csrf
                     <div class="form-group">
@@ -36,11 +32,20 @@
                     </div>
                     <button type="submit" class="btn btn-outline-dark mt-3">Post</button>
                 </form>
+            @else
+                <p class="text-center lead">Please <a href="{{ route('login') }}">Login</a> to participate in this discussion.</p>
+            @endauth
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <p>
+                        This Thread was published {{ $thread->created_at->diffForHumans() }} by <a href="#">{{ $thread->creator->name }}</a>, and currently has {{ $thread->replies_count }} {{ Str::plural('comment', $thread->replies_count) }}.
+                    </p>
+                </div>
             </div>
         </div>
-    @else
-        <p class="text-center lead">Please <a href="{{ route('login') }}">Login</a> to participate in this discussion.</p>
-    @endauth
+    </div>
 </div>
 @endsection
-
