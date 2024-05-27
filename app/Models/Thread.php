@@ -46,5 +46,17 @@ class Thread extends Model
     public function channel()
     {
         return $this->belongsTo(Channel::class);
-    }   
+    }
+    
+    /**
+     * Scope a query to filter threads.
+     *
+     * @param  mixed $query
+     * @param  mixed $filters
+     * @return void
+     */
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
+    }
 }
