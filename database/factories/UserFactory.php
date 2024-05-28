@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /**
@@ -36,5 +37,34 @@ class UserFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
         ]);
+    }
+
+    // /**
+    //  * Indicate that the model's email address should be verified.
+    //  *
+    //  * @return static
+    //  */
+    // public function verified()
+    // {
+    //     return $this->state(fn (array $attributes) => [
+    //         'email_verified_at' => now(),
+    //     ]);
+    // }
+
+    /**
+     * Define an admin state.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function admin()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'name'     => 'admin',
+                'email'    => 'admin@example.com',
+                // use a predefined password hash
+                'password' => Hash::make('123456789'),
+            ];
+        });
     }
 }
