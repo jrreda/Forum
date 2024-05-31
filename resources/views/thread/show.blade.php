@@ -5,10 +5,23 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">
-                    <a href="{{ route('profile', $thread->creator) }}" class="small">{{ $thread->creator->name }}</a> posted:
-                    <br>
-                    {{ $thread->title }}
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div>
+                        <a href="{{ route('profile', $thread->creator) }}" class="small">{{ $thread->creator->name }}</a> posted:
+                        <br>
+                        {{ $thread->title }}
+                    </div>
+
+                    @auth
+                        <div>
+                            <form action="{{ $thread->path() }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+
+                                <button class="btn btn-outline-danger" type="submit">Delete Thread</button>
+                            </form>
+                        </div>
+                    @endauth
                 </div>
 
                 <div class="card-body">{{ $thread->body }}</div>

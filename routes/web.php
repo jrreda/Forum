@@ -32,6 +32,7 @@ Route::get('/threads/create', [ThreadController::class, 'create']);
 Route::get('/threads/{channel}/{thread}', [ThreadController::class, 'show']);
 Route::post('/threads', [ThreadController::class, 'store']);
 Route::get('/threads/{channel}', [ThreadController::class, 'index']);
+Route::delete('/threads/{channel}/{thread}', [ThreadController::class, 'destroy']);
 
 // Route::resource([ThreadController::class]);
 Route::get('/threads/{thread}/replies', [ReplyController::class, 'index']);
