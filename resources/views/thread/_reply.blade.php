@@ -1,6 +1,6 @@
 <div class="card-header d-flex justify-content-between align-items-center">
     <div>
-        <a href="#" class="text-decoration-none">{{ $reply->owner->name }}</a>
+        <a href="{{ route('profile', $reply->owner) }}" class="text-decoration-none">{{ $reply->owner->name }}</a>
         said that {{ $reply->created_at->diffForHumans() }}...
     </div>
 
