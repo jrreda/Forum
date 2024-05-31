@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FavoritesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -34,3 +35,5 @@ Route::get('/threads/{channel}', [ThreadController::class, 'index']);
 // Route::resource([ThreadController::class]);
 Route::get('/threads/{thread}/replies', [ReplyController::class, 'index']);
 Route::post('/threads/{channel}/{thread}/replies', [ReplyController::class, 'store']);
+
+Route::post('/replies/{reply}/favorites', [FavoritesController::class, 'store']);
