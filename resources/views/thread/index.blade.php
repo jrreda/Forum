@@ -8,7 +8,7 @@
                 <div class="card-header">Forum Threads</div>
 
                 <div class="card-body">
-                    @foreach ($threads as $thread)
+                    @forelse ($threads as $thread)
                         <article>
                             <div class="d-flex justify-content-between pb-2">
                                 <a class="pb-1 text-decoration-none" href="{{ $thread->path() }}">{{ $thread->title }}</a>
@@ -19,7 +19,9 @@
                         </article>
 
                         <hr>
-                    @endforeach
+                    @empty
+                        <p>There are no relevant results at this time.</p>
+                    @endforelse
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@
                         {{ $thread->title }}
                     </div>
 
-                    @auth
+                    @can('update', $thread)
                         <div>
                             <form action="{{ $thread->path() }}" method="POST">
                                 @csrf
@@ -21,7 +21,7 @@
                                 <button class="btn btn-outline-danger" type="submit">Delete Thread</button>
                             </form>
                         </div>
-                    @endauth
+                    @endcan
                 </div>
 
                 <div class="card-body">{{ $thread->body }}</div>

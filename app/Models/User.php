@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Thread::class)->latest();
     }
+
+    public function isAdmin()
+    {
+        return $this->name === 'Admin';
+    }
 }

@@ -14,9 +14,9 @@
     @foreach ($threads as $thread)
         <div class="card mb-2">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h4 class="m-0">
+                <a class="m-0" href="{{ $thread->path() }}">
                     {{ $thread->title }}
-                </h4>
+                </a>
 
                 <span>
                     {{ $thread->created_at->diffForHumans() }}

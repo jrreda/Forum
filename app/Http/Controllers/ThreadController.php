@@ -112,6 +112,12 @@ class ThreadController extends Controller
      */
     public function destroy(Channel $channel, Thread $thread)
     {
+        // Authgorize, Solution #1
+        // if ($thread->user_id != auth()->id()) {
+        //     abort(403, 'You are not allowed to delete this thread');
+        // }
+        $this->authorize('update', $thread);
+
         // $thread->replies()->delete(); // solution #2 after db cascade on delete
         $thread->delete();
 
