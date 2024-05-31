@@ -18,7 +18,9 @@ class Thread extends Model
         'user_id',
         'channel_id',
     ];
-    
+
+    protected $with = ['creator', 'channel'];
+
     /**
      * boot
      *
@@ -28,6 +30,7 @@ class Thread extends Model
     {
         parent::boot();
 
+        // can use withoutGlobalScope() to remove it from the query
         static::addGlobalScope('replyCount', function (Builder $builder) {
             $builder->withCount('replies');
         });
