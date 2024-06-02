@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Traits\Favoritable;
+use App\Traits\Favoritable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
