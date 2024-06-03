@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return $this->name === 'Admin';
     }
+
+    public function activity()
+    {
+        return $this->hasMany(Activity::class);
+    }
 }

@@ -10,23 +10,12 @@
     </div>
 
     <hr class="text-body-tertiary">
+    @foreach ($activities as $date => $activity)
+        <h4 class="mt-5 mb-3 text-center">{{ $date }}</h4>
 
-    @foreach ($threads as $thread)
-        <div class="card mb-2">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <a class="m-0" href="{{ $thread->path() }}">
-                    {{ $thread->title }}
-                </a>
-
-                <span>
-                    {{ $thread->created_at->diffForHumans() }}
-                </span>
-            </div>
-
-            <div class="card-body">{{ $thread->body }}</div>
-        </div>
+        @foreach ($activity as $record)
+            @include('profiles.activities.' . $record->type, ['activity' => $record])
+        @endforeach
     @endforeach
-
-    {{ $threads->links() }}
 </div>
 @endsection

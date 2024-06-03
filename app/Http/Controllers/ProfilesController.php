@@ -3,13 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class ProfilesController extends Controller
 {
     public function show(User $user)
+    {        
+        return view('profiles.show', [
+            'user'       => $user,
+            'activities' => $this->getActivities($user)
+        ]);
+    }
+
+    protected function getActivities(User $user)
     {
-        $threads = $user->threads()->paginate(10);
-        return view('profiles.show', compact('user', 'threads'));
+        return $user->activity()->latest()->with('subject')->get()->groupby(function($activity) {
+            return $activity->created_at->format('Y-m-d');
+        });
     }
 }
