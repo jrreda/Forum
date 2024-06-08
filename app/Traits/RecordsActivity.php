@@ -5,20 +5,24 @@ namespace App\Traits;
 use App\Models\Activity;
 use ReflectionClass;
 
-trait RecordActivity
+trait RecordsActivity
 {
     /**
      * Boot the trait.
      */
-    protected static function bootRecordActivity()
+    protected static function bootRecordsActivity()
     {
         if (auth()->guest()) return false; 
 
-        foreach (static::getActivitesRecord() as $event) {
+        foreach (static::getActivitesToRecord() as $event) {
             static::$event(function ($model) use ($event) {
                 $model->recordActivity($event);
             });
         }
+
+        static::deleting(function ($model) {
+            $model->activity()->delete();
+        });
     }
 
     /**
@@ -26,7 +30,7 @@ trait RecordActivity
      *
      * @return array
      */
-    protected static function getActivitesRecord()
+    protected static function getActivitesToRecord()
     {
         return ['created'];
     }
@@ -45,7 +49,7 @@ trait RecordActivity
     }
 
     /**
-     * Fetch the activity relationship.
+     *  relationFetch the activityship.
      *
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */

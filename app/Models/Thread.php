@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use App\Traits\RecordActivity;
+use App\Traits\RecordsActivity;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
 {
-    use HasFactory, RecordActivity;
+    use HasFactory, RecordsActivity;
 
     // protected $guarded = [];
 

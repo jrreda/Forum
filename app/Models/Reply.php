@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use App\Traits\Favoritable;
-use App\Traits\RecordActivity;
+use App\Traits\RecordsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model
 {
-    use HasFactory, Favoritable, RecordActivity;
+    use HasFactory, Favoritable, RecordsActivity;
 
     // protected $guarded = [];
 
