@@ -57,7 +57,7 @@ class Thread extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function addReply($reply) 
+    public function addReply($reply)
     {
         $this->replies()->create($reply);
     }
@@ -71,7 +71,7 @@ class Thread extends Model
     {
         return $this->belongsTo(Channel::class);
     }
-    
+
     /**
      * Scope a query to filter users.
      *

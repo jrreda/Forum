@@ -12,7 +12,7 @@ trait RecordsActivity
      */
     protected static function bootRecordsActivity()
     {
-        if (auth()->guest()) return false; 
+        if (auth()->guest()) return false;
 
         foreach (static::getActivitesToRecord() as $event) {
             static::$event(function ($model) use ($event) {
