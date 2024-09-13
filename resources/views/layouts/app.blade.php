@@ -15,14 +15,24 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    @yield('styles')
 </head>
 <body class="pb-5">
     <div id="app">
         @include('layouts._nav')
 
         <main class="py-4">
+            <!-- include the content for the current page -->
             @yield('content')
+
+            <!-- display flash messages -->
+            <div class="d-inline-flex py-1 px-3 float-end">
+                <x-flash />
+            </div>
         </main>
+
+        @yield('scripts')
     </div>
 </body>
 </html>
